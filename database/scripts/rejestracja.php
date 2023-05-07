@@ -31,6 +31,8 @@ session_start();
 
 
         <div class="input-group mb-3">
+        <label for="inputEmail3" class="col-sm-2 control-label">Imię</label>
+         <div class="col-sm-10">
           <input type="text" class="form-control" placeholder="Podaj imię" name="firstName">
           <div class="input-group-append">
             <div class="input-group-text">
@@ -41,6 +43,8 @@ session_start();
 
 
         <div class="input-group mb-3">
+        <label for="inputEmail3" class="col-sm-2 control-label">Nazwisko</label>
+         <div class="col-sm-10">
           <input type="text" class="form-control" placeholder="Podaj nazwisko" name="lastName">
           <div class="input-group-append">
             <div class="input-group-text">
@@ -51,6 +55,8 @@ session_start();
 
 
         <div class="input-group mb-3">
+        <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+         <div class="col-sm-10">
           <input type="email" class="form-control" placeholder="Podaj email" name="email1">
           <div class="input-group-append">
             <div class="input-group-text">
@@ -60,6 +66,8 @@ session_start();
         </div>
 
         <div class="input-group mb-3">
+        <label for="inputEmail3" class="col-sm-2 control-label">Powtórz email</label>
+         <div class="col-sm-10">
           <input type="email" class="form-control" placeholder="Powtórz email" name="email2">
           <div class="input-group-append">
             <div class="input-group-text">
@@ -70,6 +78,8 @@ session_start();
 
 
         <div class="input-group mb-3">
+        <label for="inputEmail3" class="col-sm-2 control-label">hasło</label>
+         <div class="col-sm-10">
           <input type="password" class="form-control" placeholder="Podaj hasło" name="pass1">
           <div class="input-group-append">
             <div class="input-group-text">
@@ -80,6 +90,8 @@ session_start();
 
 
         <div class="input-group mb-3">
+        <label for="inputEmail3" class="col-sm-2 control-label">Powtórz hasło</label>
+         <div class="col-sm-10">
           <input type="password" class="form-control" placeholder="Powtórz hasło" name="pass2">
           <div class="input-group-append">
             <div class="input-group-text">
