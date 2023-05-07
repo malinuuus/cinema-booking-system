@@ -62,6 +62,5 @@ session_start();
       <div class="col-5">
         <p> Nie masz jeszcze konta?    <a href="./rejestracja.php" class="text-center">Zarejestruj się</a></p>
       </div>
- 
 </div>
 
