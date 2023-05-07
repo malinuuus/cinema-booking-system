@@ -7,7 +7,7 @@
 <body class="hold-transition login-page">
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="../index.php" class="text-center">Nazwa kina</a>
+      <a href="index.php" class="text-center">Nazwa kina</a>
     </div>
     <div class="card-body">
       <p class="login-box-msg">Zaloguj się</p>
