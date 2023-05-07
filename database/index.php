@@ -8,8 +8,8 @@
 </head>
 <body>
   <nav>
-    <h1>Nazwa kina</h1>
-    <a href="#">zaloguj się</a>
+    <h1><a href="./index.php" class="text-center">Nazwa kina</a></h1>
+    <a href="./scripts/logowanie.php">zaloguj się</a>
   </nav>
   <h3> Repertuar</h3>
   <?php
