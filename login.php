@@ -1,29 +1,18 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
-  
-
+  <title>Logowanie</title>
 <body class="hold-transition login-page">
-
-
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="" class="h1"><b><a href="../index.php" class="text-center">Nazwa kina</a></b></a>
+      <a href="../index.php" class="text-center">Nazwa kina</a>
     </div>
     <div class="card-body">
       <p class="login-box-msg">Zaloguj się</p>
 
       <form action="../scripts/register.php" method="post">
-
-
-     
-
 
          <div class="input-group mb-3">
          <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
@@ -37,7 +26,6 @@ session_start();
         </div>
         </div>
 
-
         <div class="input-group mb-3">
         <label for="inputPassword3" class="col-sm-2 control-label">Hasło</label>
         <div class="col-sm-10">
@@ -50,17 +38,14 @@ session_start();
         </div>
         </div>
 
-
         <div class="col-7">
-       
             <button type="submit" class="btn btn-primary btn-block">Zaloguj się</button>
         </div> 
         </div>
-
       </form>
 
       <div class="col-5">
-        <p> Nie masz jeszcze konta?    <a href="./rejestracja.php" class="text-center">Zarejestruj się</a></p>
+        <p> Nie masz jeszcze konta?    <a href="register.php" class="text-center">Zarejestruj się</a></p>
       </div>
 </div>
 
