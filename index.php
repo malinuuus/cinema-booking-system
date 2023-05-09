@@ -19,6 +19,7 @@ $nextDay = date('Y-m-d', strtotime($date.' +1 day'));
   <nav>
     <h1><a href="./index.php" class="text-center">Nazwa kina</a></h1>
     <a href="login.php">zaloguj się</a>
+    <h4><a href="loginguest.php">Kontynuuj jako gość</a>
   </nav>
   <h3> Repertuar</h3>
   <div>

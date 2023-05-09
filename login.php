@@ -12,6 +12,7 @@
     </div>
     <div class="card-body">
         <p class="login-box-msg">Zaloguj się</p>
+        
 
         <form action="../scripts/register.php" method="post">
 
