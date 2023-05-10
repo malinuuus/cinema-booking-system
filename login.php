@@ -11,7 +11,7 @@
         <a href="index.php" class="text-center">Nazwa kina</a>
     </div>
     <div class="card-body">
-        <p class="login-box-msg">Zaloguj się</p>
+        <h4> Zaloguj się </h4>
         
 
         <form action="../scripts/register.php" method="post">
