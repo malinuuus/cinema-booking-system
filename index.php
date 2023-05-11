@@ -1,10 +1,22 @@
 <?php
-// dodać ograniczenie zakresu daty
-$date = isset($_GET["date"]) ? $_GET["date"] : date('Y-m-d');
+if (isset($_GET["date"])) {
+    $date = $_GET["date"];
+
+    // jeśli zakres jest zły
+    if ($date < date('Y-m-d') || $date >= date('Y-m-d', strtotime("+1 week"))) {
+        header("location: index.php");
+        exit();
+    }
+} else {
+    $date = date('Y-m-d');
+}
 $dateDisplay = date('d.m.Y', strtotime($date));
 
 $prevDay = date('Y-m-d', strtotime($date.' -1 day'));
 $nextDay = date('Y-m-d', strtotime($date.' +1 day'));
+
+$prevDayLink = $prevDay < date('Y-m-d') ? "#" : "index.php?date=$prevDay";
+$nextDayLink = $nextDay >= date('Y-m-d', strtotime("+1 week")) ? "#" : "index.php?date=$nextDay";
 
 ?>
 <!DOCTYPE html>
@@ -23,15 +35,18 @@ $nextDay = date('Y-m-d', strtotime($date.' +1 day'));
   </nav>
   <h3> Repertuar</h3>
   <div>
-      <a href="index.php?date=<?php echo $prevDay ?>"><</a>
+      <a href=<?php echo $prevDayLink ?>><</a>
       <span><?php echo $dateDisplay ?></span>
-      <a href="index.php?date=<?php echo $nextDay ?>">></a>
+      <a href=<?php echo $nextDayLink?>>></a>
   </div>
   <?php
   require_once "scripts/connect.php";
-  // dodać zabezpieczenie przed sql injection
-  $sql = "SELECT m.id, m.title, m.description, m.premiere_date, m.duration FROM movies m INNER JOIN screenings s ON m.id = s.movie_id WHERE s.date = '$date' GROUP BY m.id";
-  $result = $conn->query($sql);
+
+  $sql = "SELECT m.id, m.title, m.description, m.premiere_date, m.duration FROM movies m INNER JOIN screenings s ON m.id = s.movie_id WHERE s.date = ? GROUP BY m.id";
+  $stmt = $conn->prepare($sql);
+  $stmt->bind_param('s', $date);
+  $stmt->execute();
+  $result = $stmt->get_result();
 
   while($movie = $result->fetch_assoc()){
     echo <<< MOVIE
