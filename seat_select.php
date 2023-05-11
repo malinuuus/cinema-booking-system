@@ -28,9 +28,7 @@
   echo "</div>";
  ?>
   <div class="col-7">
-  <button type="submit" class="btn btn-primary btn-block"><a href="./buy_ticket.php" class="text-center">Kup bilet</a></button>
+  <a href="./buy_ticket.php" class="text-center">Kup bilet</a>
 </div>
-
- 
 </body>
 </html>

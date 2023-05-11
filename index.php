@@ -47,7 +47,7 @@ $nextDay = date('Y-m-d', strtotime($date.' +1 day'));
 
     while ($screening = $screeningsResult->fetch_assoc()) {
       echo <<< SCREENING
-        <p><a href="./seat_select.php" class="text-center">$screening[time]</p>
+        <p><a href="./seat_select.php" class="text-center">$screening[time]</a></p>
       SCREENING;
     }
 
