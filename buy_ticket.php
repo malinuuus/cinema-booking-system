@@ -12,13 +12,32 @@
     <a href="login.php">zaloguj się</a>
 </nav>
 <?php
+session_start();
 require_once "scripts/connect.php";
-$sql = "SELECT s.id, s.row, s.number, c.price FROM seats s INNER JOIN reservations r on r.seat_id = s.id INNER JOIN screenings c ON r.screening_id = c.id INNER JOIN movies m on c.movie_id = m.id where c.price=28.90";
+$sql = "SELECT m.id, m.title, m.duration, s.hall_number, s.is_subtitles, s.date, s.time FROM movies m INNER JOIN screenings s ON m.id = s.movie_id where s.id = $_SESSION[screening_id]";
 $result = $conn->query($sql);
-while ($seats = $result->fetch_assoc()) {
+while($movie = $result->fetch_assoc()){
+  echo <<< MOVIE
+    <div>
+      <h3>tytuł filmu: $movie[title] $movie[is_subtitles]</h3>
+      <p>czas trwania: $movie[duration] min</p>
+      <p>numer sali: $movie[hall_number] </p>
+      <p>$movie[date] $movie[time]</p>
+    </div>
+  MOVIE;
+}
+
+$selectedSeats = explode(',', $_POST["selectedSeats"]);
+
+foreach ($selectedSeats as $key => $value) {
+    
+    $sql = "SELECT row, number FROM seats WHERE id=$value";
+    $result = $conn->query($sql);
+    $seat = $result->fetch_assoc();
+
     echo <<< SEAT
         <div>
-            <h3><p>Rząd: $seats[row], Miejsce: $seats[number], Cena: $seats[price]</p></h3>
+            <p>Rząd: $seat[row], Miejsce: $seat[number]</p>
         </div>
     SEAT;
 }
@@ -34,3 +53,4 @@ while ($seats = $result->fetch_assoc()) {
 
 </body>
 </html>
+

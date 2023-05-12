@@ -58,11 +58,11 @@ $nextDayLink = $nextDay >= date('Y-m-d', strtotime("+1 week")) ? "#" : "index.ph
     MOVIE;
 
     // wyświetlenie godzin
-    $screeningsResult = $conn->query("SELECT TIME_FORMAT(time, '%H:%i') AS time FROM screenings WHERE movie_id = $movie[id] AND date = '$date' ORDER BY time");
+    $screeningsResult = $conn->query("SELECT id, TIME_FORMAT(time, '%H:%i') AS time FROM screenings WHERE movie_id = $movie[id] AND date = '$date' ORDER BY time");
 
     while ($screening = $screeningsResult->fetch_assoc()) {
       echo <<< SCREENING
-        <p><a href="./seat_select.php" class="text-center">$screening[time]</a></p>
+        <p><a href="./seat_select.php?id=$screening[id]" class="text-center">$screening[time]</a></p>
       SCREENING;
     }
 
