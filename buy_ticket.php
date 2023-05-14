@@ -16,17 +16,15 @@ session_start();
 require_once "scripts/connect.php";
 $sql = "SELECT m.id, m.title, m.duration, s.hall_number, s.is_subtitles, s.date, s.time FROM movies m INNER JOIN screenings s ON m.id = s.movie_id where s.id = $_SESSION[screening_id]";
 $result = $conn->query($sql);
-while($movie = $result->fetch_assoc()){
-  echo <<< MOVIE
-    <div>
-      <h3>tytuł filmu: $movie[title] $movie[is_subtitles]</h3>
-      <p>czas trwania: $movie[duration] min</p>
-      <p>numer sali: $movie[hall_number] </p>
-      <p>$movie[date] $movie[time]</p>
-    </div>
-  MOVIE;
-
-}
+$movie = $result->fetch_assoc();
+echo <<< MOVIE
+<div>
+  <h3>tytuł filmu: $movie[title] $movie[is_subtitles]</h3>
+  <p>czas trwania: $movie[duration] min</p>
+  <p>numer sali: $movie[hall_number] </p>
+  <p>$movie[date] $movie[time]</p>
+</div>
+MOVIE;
 
 $selectedSeats = explode(',', $_POST["selectedSeats"]);
 
