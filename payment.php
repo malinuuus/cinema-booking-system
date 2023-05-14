@@ -12,7 +12,7 @@
     </div>
     <div class="card-body">
         <p class="login-box-msg">METODY PŁATNOŚCI</p>
-        <form action="../scripts/payment.php" method="post">
+        <form action="ticket.php" method="post">
 
             <div class="input-group">
                 <div class="input-box">
