@@ -35,12 +35,14 @@
     }
   </style>
 </head>
-<body>>
+<body>
   <?php
   require_once "header.php";
 
   //zrobic: dodawanie do bazy jako gosc i podsumowanie
-  session_start();
+  if (session_status() === PHP_SESSION_NONE) {
+      session_start();
+  }
   $_SESSION["screening_id"] = $_GET["id"];
 
   require_once "scripts/connect.php";

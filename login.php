@@ -35,12 +35,15 @@ if (isset($_SESSION["success"])) {
 
     ?>
 <div class="card card-outline card-primary">
-    <?php require_once "header.php"; ?>
+    <?php
+    require_once "header.php";
+    $redirect = isset($_GET["redirect"]) ? $_GET["redirect"] : "../index.php";
+    ?>
     <div class="card-body">
         <h4> Zaloguj się </h4>
 
-
-        <form action="./scripts/login.php" method="post">
+        <!-- czy link do przekierowania może być jako parametr w linku? -->
+        <form action="./scripts/login.php?redirect=<?php echo $redirect; ?>" method="post">
 
             <div class="input-group mb-3">
                 <label for="inputEmail3" class="col-sm-2 control-label">Email</label>

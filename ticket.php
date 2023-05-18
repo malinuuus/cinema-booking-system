@@ -10,7 +10,9 @@
 <?php require_once "header.php"; ?>
 <p class="login-box-msg">DZIĘKUJEMY ZA ZAKUP</p>
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 require_once "scripts/connect.php";
 $sql = "SELECT m.id, m.title, m.duration, s.hall_number, s.is_subtitles, s.date, s.time FROM movies m INNER JOIN screenings s ON m.id = s.movie_id where s.id = $_SESSION[screening_id]";
