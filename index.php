@@ -28,11 +28,7 @@ $nextDayLink = $nextDay >= date('Y-m-d', strtotime("+1 week")) ? "#" : "index.ph
   <title>Cinema</title>
 </head>
 <body>
-  <nav>
-    <h1><a href="./index.php" class="text-center">Nazwa kina</a></h1>
-    <a href="login.php">zaloguj się</a>
-    <h4><a href="loginguest.php">Kontynuuj jako gość</a>
-  </nav>
+  <?php require_once "header.php"; ?>
   <h3> Repertuar</h3>
   <div>
       <a href=<?php echo $prevDayLink ?>><</a>

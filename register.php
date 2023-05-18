@@ -42,9 +42,7 @@ if (isset($_SESSION["success"])) {
 }
 ?>
 <div class="card card-outline card-primary">
-    <div class="card-header text-center">
-        <br><a href="index.php" class="text-center">Nazwa kina</a>
-    </div>
+    <?php require_once "header.php"; ?>
     <div class="card-body">
         <p class="login-box-msg">Rejestracja użytkownika</p>
         <form action="scripts/register.php" method="post">

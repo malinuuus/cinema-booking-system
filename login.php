@@ -35,9 +35,7 @@ if (isset($_SESSION["success"])) {
 
     ?>
 <div class="card card-outline card-primary">
-    <div class="card-header text-center">
-        <a href="index.php" class="text-center">Nazwa kina</a>
-    </div>
+    <?php require_once "header.php"; ?>
     <div class="card-body">
         <h4> Zaloguj się </h4>
 

@@ -7,9 +7,7 @@
 </head>
 <body class="hold-transition login-page">
 <div class="card card-outline card-primary">
-    <div class="card-header text-center">
-        <a href="index.php" class="text-center">Nazwa kina</a>
-    </div>
+    <?php require_once "header.php"; ?>
     <div class="card-body">
         <p class="login-box-msg">METODY PŁATNOŚCI</p>
         <form action="ticket.php" method="post">

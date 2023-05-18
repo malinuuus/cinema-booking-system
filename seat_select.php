@@ -35,12 +35,10 @@
     }
   </style>
 </head>
-<body>
-  <nav>
-    <h1><a href="./index.php" class="text-center">Nazwa kina</a></h1>
-    <a href="login.php">zaloguj się</a>
-  </nav>
+<body>>
   <?php
+  require_once "header.php";
+
   //zrobic: dodawanie do bazy jako gosc i podsumowanie
   session_start();
   $_SESSION["screening_id"] = $_GET["id"];

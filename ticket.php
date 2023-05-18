@@ -7,10 +7,8 @@
     <title>Podsumowanie</title>
 </head>
 <body>
-<nav>
-    <h1><a href="./index.php" class="text-center">Nazwa kina</a></h1>
-    <p class="login-box-msg">DZIĘKUJEMY ZA ZAKUP</p>
-</nav>
+<?php require_once "header.php"; ?>
+<p class="login-box-msg">DZIĘKUJEMY ZA ZAKUP</p>
 <?php
 session_start();
 
