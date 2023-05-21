@@ -12,12 +12,11 @@ session_start();
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
-    <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <!-- Theme style -->
     <link rel="stylesheet" href="../dist/css/adminlte.min.css">
 </head>
-<body class="hold-transition register-page">
+<body class="bg-dark hold-transition register-page text-light">
 <?php
 if (isset($_SESSION["error"])) {
     echo <<< ERROR
@@ -41,109 +40,70 @@ if (isset($_SESSION["success"])) {
     unset($_SESSION["success"]);
 }
 ?>
-<div class="card card-outline card-primary">
+<div>
     <?php require_once "header.php"; ?>
     <div class="card-body">
-        <p class="login-box-msg">Rejestracja użytkownika</p>
-        <form action="scripts/register.php" method="post">
+        <form action="scripts/register.php" method="post" class="container p-3">
+            <h3 class="login-box-msg mb-4">Rejestracja użytkownika</h3>
 
-            <div class="input-group mb-3">
-                <label for="inputEmail3" class="col-sm-2 control-label">Imię</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" placeholder="Podaj imię" name="first_name">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-user"></span>
-                        </div>
-                    </div>
-                </div>
+            <div class="my-3">
+                <label for="first_name" class="form-label">Imię</label>
+                <input type="text" class="form-control" placeholder="Podaj imię" name="first_name" id="first_name">
             </div>
 
-            <div class="input-group mb-3">
-                <label for="inputEmail3" class="col-sm-2 control-label">Nazwisko</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" placeholder="Podaj nazwisko" name="last_name">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-user"></span>
-                        </div>
-                    </div>
-                </div>
+            <div class="my-3">
+                <label for="last_name" class="form-label">Nazwisko</label>
+                <input type="text" class="form-control" placeholder="Podaj nazwisko" name="last_name" id="last_name">
             </div>
 
-            <div class="input-group mb-3">
-                <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-                <div class="col-sm-10">
-                    <input type="email" class="form-control" placeholder="Podaj email" name="email1">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-envelope"></span>
-                        </div>
-                    </div>
-                </div>
+
+            <div class="my-3">
+                <label for="email1" class="form-label">Email</label>
+                <input type="text" class="form-control" placeholder="Podaj email" name="email1" id="email1">
             </div>
 
-            <div class="input-group mb-3">
-                <label for="inputEmail3" class="col-sm-2 control-label">Powtórz email</label>
-                <div class="col-sm-10">
-                    <input type="email" class="form-control" placeholder="Powtórz email" name="email2">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-envelope"></span>
-                        </div>
-                    </div>
-                </div>
+
+            <div class="my-3">
+                <label for="email2" class="form-label">Powtórz email</label>
+                <input type="text" class="form-control" placeholder="Powtórz email" name="email2" id="email2">
             </div>
 
-            <div class="input-group mb-3">
-                <label for="inputEmail3" class="col-sm-2 control-label">hasło</label>
-                <div class="col-sm-10">
-                    <input type="password" class="form-control" placeholder="Podaj hasło" name="pass1">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
-                        </div>
-                    </div>
-                </div>
+
+            <div class="my-3">
+                <label for="pass1" class="form-label">Hasło</label>
+                <input type="text" class="form-control" placeholder="Podaj hasło" name="pass1" id="pass1">
             </div>
 
-            <div class="input-group mb-3">
-                <label for="inputEmail3" class="col-sm-2 control-label">Powtórz hasło</label>
-                <div class="col-sm-10">
-                    <input type="password" class="form-control" placeholder="Powtórz hasło"
-                           name="pass2">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
-                        </div>
-                    </div>
-                </div>
+
+            <div class="my-3">
+                <label for="pass2" class="form-label">Powtórz hasło</label>
+                <input type="text" class="form-control" placeholder="Powtórz hasło" name="pass2" id="pass2">
             </div>
+
 
             <!--regumamin-->
             <div class="row">
-                <div class="col-7">
-                    <div class="icheck-primary">
-                        <input type="checkbox" id="agreeTerms" name="terms" value="agree">
-                        <label for="agreeTerms">
-                            Zatwierdź regulamin <a href="#">Regulamin</a>
-                        </label>
-                    </div>
+                <div class="col">
+                    <input type="checkbox" id="agreeTerms" name="terms" value="agree">
+                    <label for="agreeTerms">
+                        Zatwierdź <a href="#">regulamin</a>
+                    </label>
                 </div>
+            </div>
 
-                <div class="col-5">
+            <div class="row my-3">
+                <div class="col">
                     <button type="submit" class="btn btn-primary btn-block">Rejestracja</button>
                 </div>
             </div>
-        </form>
 
-        <a href="login.php" class="text-center">Mam już konto</a>
+            <a href="login.php" class="text-center">Mam już konto</a>
+        </form>
     </div>
 </div>
 <!-- jQuery -->
 <script src="../plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
 </body>
