@@ -27,11 +27,10 @@ echo <<< MOVIE
 </div>
 MOVIE;
 
-$selectedSeats = explode(',', $_POST["selectedSeats"]);
+$selectedSeats = explode(',', $_SESSION["selectedSeats"]);
 
-foreach ($selectedSeats as $key => $value) {
-    
-    $sql = "SELECT row, number FROM seats WHERE id=$value";
+foreach ($selectedSeats as $seatId) {
+    $sql = "SELECT row, number FROM seats WHERE id=$seatId";
     $result = $conn->query($sql);
     $seat = $result->fetch_assoc();
 

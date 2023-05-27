@@ -24,11 +24,8 @@ while($movie = $result->fetch_assoc()){
       <h3>$movie[title] </h3>
       <p>$movie[date] $movie[time]</p>
       <p>Sala $movie[hall_number]</p>
-
-      
     </div>
   MOVIE;
-
 }
 /*
 $selectedSeats = explode(',', $_POST["selectedSeats"]);

@@ -10,7 +10,7 @@
     <?php require_once "header.php"; ?>
     <div class="card-body">
         <p class="login-box-msg">METODY PŁATNOŚCI</p>
-        <form action="ticket.php" method="post">
+        <form action="scripts/book_seats.php" method="post">
 
             <div class="input-group">
                 <div class="input-box">

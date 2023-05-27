@@ -43,7 +43,7 @@ saveButton.addEventListener('click', () => {
   // utworzenie elementu formularza
   const form = document.createElement('form');
   form.method = 'POST';
-  form.action = 'buy_ticket.php';
+  form.action = 'scripts/save_seats.php';
 
   // utworzenie elementu input
   const input = document.createElement('input');
