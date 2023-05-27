@@ -59,3 +59,5 @@ if ($stmt->affected_rows == 1) {
 } else {
     $_SESSION["error"] = "Nie udało sie dodać rekordu ";
 }
+
+header("location: ../login.php");

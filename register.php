@@ -59,25 +59,25 @@ if (isset($_SESSION["success"])) {
 
             <div class="my-3">
                 <label for="email1" class="form-label">Email</label>
-                <input type="text" class="form-control" placeholder="Podaj email" name="email1" id="email1">
+                <input type="email" class="form-control" placeholder="Podaj email" name="email1" id="email1">
             </div>
 
 
             <div class="my-3">
                 <label for="email2" class="form-label">Powtórz email</label>
-                <input type="text" class="form-control" placeholder="Powtórz email" name="email2" id="email2">
+                <input type="email" class="form-control" placeholder="Powtórz email" name="email2" id="email2">
             </div>
 
 
             <div class="my-3">
                 <label for="pass1" class="form-label">Hasło</label>
-                <input type="text" class="form-control" placeholder="Podaj hasło" name="pass1" id="pass1">
+                <input type="password" class="form-control" placeholder="Podaj hasło" name="pass1" id="pass1">
             </div>
 
 
             <div class="my-3">
                 <label for="pass2" class="form-label">Powtórz hasło</label>
-                <input type="text" class="form-control" placeholder="Powtórz hasło" name="pass2" id="pass2">
+                <input type="password" class="form-control" placeholder="Powtórz hasło" name="pass2" id="pass2">
             </div>
 
 

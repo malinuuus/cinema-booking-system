@@ -46,16 +46,25 @@
   $_SESSION["screening_id"] = $_GET["id"];
 
   require_once "scripts/connect.php";
-  $sql = "SELECT m.id, m.title, m.duration, s.hall_number, s.is_subtitles, s.date FROM movies m INNER JOIN screenings s ON m.id = s.movie_id where s.id = $_GET[id]";
+  $sql = "SELECT m.id, m.title, m.duration, s.hall_number, s.is_subtitles, CONCAT(s.date, ' ', s.time) AS datetime FROM movies m INNER JOIN screenings s ON m.id = s.movie_id where s.id = $_GET[id]";
   $result = $conn->query($sql);
   $movie = $result->fetch_assoc();
+
+  if ($result->num_rows == 0 || strtotime($movie["datetime"]) < time()) {
+      echo <<< MESSAGE
+        <p>Ten seans minął lub nie istnieje!
+            <a href="./">Powrót do strony głównej</a>
+        </p>
+      MESSAGE;
+      exit();
+  }
 
     echo <<< MOVIE
       <div>
         <h3 class="mb-3">$movie[title] $movie[is_subtitles]</h3>
         <p>czas trwania: $movie[duration] min</p>
         <p>numer sali: $movie[hall_number] </p>
-        <p>$movie[date]</p>
+        <p>$movie[datetime]</p>
       </div>
     MOVIE;
  ?>

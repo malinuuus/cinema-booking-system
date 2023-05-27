@@ -18,6 +18,9 @@ $nextDay = date('Y-m-d', strtotime($date.' +1 day'));
 $prevDayLink = $prevDay < date('Y-m-d') ? "#" : "index.php?date=$prevDay";
 $nextDayLink = $nextDay >= date('Y-m-d', strtotime("+1 week")) ? "#" : "index.php?date=$nextDay";
 
+$prevDayDisabled = $prevDay < date('Y-m-d') ? "disabled" : "";
+$nextDayDisabled = $nextDay >= date('Y-m-d', strtotime("+1 week")) ? "disabled" : "";
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,9 +36,9 @@ $nextDayLink = $nextDay >= date('Y-m-d', strtotime("+1 week")) ? "#" : "index.ph
   <div class="content px-5 py-4 text-light">
     <h3>Repertuar</h3>
     <div class="bg-dark d-flex align-items-center">
-        <a class="btn btn-outline-light btn-sm" href=<?php echo $prevDayLink ?>><</a>
+        <a class="btn btn-outline-light btn-sm <?php echo $prevDayDisabled ?>" href=<?php echo $prevDayLink ?>><</a>
         <span class="mx-2"><?php echo $dateDisplay ?></span>
-        <a class="btn btn-outline-light btn-sm" href=<?php echo $nextDayLink?>>></a>
+        <a class="btn btn-outline-light btn-sm <?php echo $nextDayDisabled ?>" href=<?php echo $nextDayLink?>>></a>
     </div>
     <?php
     require_once "scripts/connect.php";
@@ -52,16 +55,18 @@ $nextDayLink = $nextDay >= date('Y-m-d', strtotime("+1 week")) ? "#" : "index.ph
           <h3>$movie[title]</h3>
           <img src="images/straz.jpg" width="150">
           <p>czas trwania: $movie[duration] min</p>
-          <p>premiera: $movie[premiere_date]</p>  
+          <p>premiera: $movie[premiere_date]</p>
           <p>opis: $movie[description]</p>
       MOVIE;
 
       // wyświetlenie godzind
-      $screeningsResult = $conn->query("SELECT id, TIME_FORMAT(time, '%H:%i') AS time FROM screenings WHERE movie_id = $movie[id] AND date = '$date' ORDER BY time");
+      $screeningsResult = $conn->query("SELECT id, TIME_FORMAT(time, '%H:%i') AS time, CONCAT(date, ' ', time) AS datetime FROM screenings WHERE movie_id = $movie[id] AND date = '$date' ORDER BY time");
 
       while ($screening = $screeningsResult->fetch_assoc()) {
+        $disabledClass = strtotime($screening["datetime"]) < time() ? "disabled" : "";
+
         echo <<< SCREENING
-          <a href="./seat_select.php?id=$screening[id]" class="btn btn-outline-light mx-1">$screening[time]</a>
+          <a href="./seat_select.php?id=$screening[id]" class="btn btn-outline-light $disabledClass mx-1">$screening[time]</a>
         SCREENING;
       }
 
