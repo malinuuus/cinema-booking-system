@@ -12,13 +12,15 @@ session_start();
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
-    <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <!-- Theme style -->
     <link rel="stylesheet" href="../dist/css/adminlte.min.css">
 </head>
-<body class="hold-transition login-page">
+<body class="bg-dark hold-transition loginquest-page text-light">
+  <?php require_once "header.php"; ?>
+<div class="bg-dark content px-5 py-4">
 <?php
+
 if (isset($_SESSION["error"])) {
     echo <<< ERROR
        <div class="alert alert-danger alert-dismissible"> 
@@ -42,60 +44,37 @@ if (isset($_SESSION["success"])) {
 }
 ?>
 <div class="card card-outline card-primary">
+
     <?php require_once "header.php"; ?>
+    <div class="bg-dark text-light">
     <div class="card-body">
-        <p class="login-box-msg">Kontynuuj jako gość</p>
+        <h3 class="login-box-msg">Kontynuuj jako gość</h3>
         <form action="scripts/loginguest.php" method="post">
     
-            <div class="input-group mb-3">
-                <label for="inputEmail3" class="col-sm-2 control-label">Imię</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" placeholder="Podaj imię" name="first_name">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-user"></span>
-                        </div>
-                    </div>
-                </div>
+            <div class="my-3">
+                <label for="first_name" class="form-label">Imię</label>
+                <input type="text" class="form-control" placeholder="Podaj imię" name="first_name" id="first_name">
             </div>
 
-            <div class="input-group mb-3">
-                <label for="inputEmail3" class="col-sm-2 control-label">Nazwisko</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" placeholder="Podaj nazwisko" name="last_name">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-user"></span>
-                        </div>
-                    </div>
-                </div>
+            <div class="my-3">
+                <label for="last_name" class="form-label">Nazwisko</label>
+                <input type="text" class="form-control" placeholder="Podaj nazwisko" name="last_name" id="last_name">
             </div>
 
 
-            <div class="input-group mb-3">
-                <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-                <div class="col-sm-10">
-                    <input type="email" class="form-control" placeholder="Podaj email" name="email1">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-envelope"></span>
-                        </div>
-                    </div>
-                </div>
+
+            <div class="my-3">
+                <label for="email1" class="form-label">Email</label>
+                <input type="email" class="form-control" placeholder="Podaj email" name="email1" id="email1">
             </div>
 
-            <div class="input-group mb-3">
-                <label for="inputEmail3" class="col-sm-2 control-label">Powtórz email</label>
-                <div class="col-sm-10">
-                    <input type="email" class="form-control" placeholder="Powtórz email" name="email2">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-envelope"></span>
-                        </div>
-                    </div>
-                </div>
+
+            <div class="my-3">
+                <label for="email2" class="form-label">Powtórz email</label>
+                <input type="email" class="form-control" placeholder="Powtórz email" name="email2" id="email2">
             </div>
 
+            
             <div class="col-5">
                 <!-----form action="payment.php"---->
                 <button type="submit" class="btn btn-primary btn-block">Kontynuuj</button>
