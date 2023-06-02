@@ -5,10 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cinema</title>
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../dist/css/adminlte.min.css">
 </head>
-<body>
+<body class="bg-dark hold-transition register-page text-light">
+  <?php require_once "header.php"; ?>
+<div class="content px-5 py-4">
 <?php
-require_once "header.php";
+
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -20,7 +30,8 @@ $result = $conn->query($sql);
 $movie = $result->fetch_assoc();
 echo <<< MOVIE
 <div>
-  <h3>tytuł filmu: $movie[title] $movie[is_subtitles]</h3>
+  <h3>Podsumowanie</h3><br>
+  <p>tytuł filmu: $movie[title] $movie[is_subtitles]</p>
   <p>czas trwania: $movie[duration] min</p>
   <p>numer sali: $movie[hall_number] </p>
   <p>$movie[date] $movie[time]</p>
@@ -53,6 +64,14 @@ foreach ($selectedSeats as $seatId) {
 <div class="col-7">
     <a href="./payment.php" class="text-center">PŁATNOŚĆ</a>
 </div>
+
+<!-- jQuery -->
+<script src="../plugins/jquery/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+<!-- AdminLTE App -->
+<script src="../dist/js/adminlte.min.js"></script>
+</body>
+</html>
 
 </body>
 </html>

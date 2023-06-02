@@ -34,7 +34,7 @@ $nextDayDisabled = $nextDay >= date('Y-m-d', strtotime("+1 week")) ? "disabled" 
 <body class="bg-dark text-light">
   <?php require_once "header.php"; ?>
   <div class="content px-5 py-4">
-    <h3>Repertuarrrrr</h3>
+    <h3>Repertuar</h3>
     <div class="bg-dark d-flex align-items-center">
         <a class="btn btn-outline-light btn-sm <?php echo $prevDayDisabled ?>" href=<?php echo $prevDayLink ?>><</a>
         <span class="mx-2"><?php echo $dateDisplay ?></span>

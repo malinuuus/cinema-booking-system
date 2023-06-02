@@ -46,7 +46,7 @@ if ($result->num_rows != 0) {
 }
 
 require_once "./connect.php";
-$pass = password_hash($_POST["pass1"], PASSWORD_ARGON2ID);
+$pass = password_hash($_POST["pass1"], PASSWORD_DEFAULT);
 
 $stmt = $conn->prepare("INSERT INTO `customers` (`first_name`, `last_name`, `email`, `password`, `is_user`) VALUES (?, ?, ?, ?, '1' );");
 $stmt->bind_param('ssss', $_POST["first_name"], $_POST["last_name"], $_POST["email1"], $pass);
