@@ -40,7 +40,7 @@ if (isset($_SESSION["success"])) {
     $redirect = isset($_GET["redirect"]) ? $_GET["redirect"] : "../index.php";
     ?>
     <div class="card-body">
-        <h4> Zaloguj się </h4>
+        <h4> Zaloguj sięeeeeeeee </h4>
 
         <!-- czy link do przekierowania może być jako parametr w linku? -->
         <form action="./scripts/login.php?redirect=<?php echo $redirect; ?>" method="post">
