@@ -64,6 +64,12 @@ if (isset($_SESSION["success"])) {
                 <input type="password" class="form-control" placeholder="Podaj hasło" name="pass1" id="pass1">
             </div>
 
+            <div class="row my-3">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary btn-block">Zaloguj sie</button>
+                </div>
+            </div>
+
             <div class="col-5">
         <p> Nie masz jeszcze konta? <a href="register.php" class="text-center">Zarejestruj się</a></p>
             </div>
