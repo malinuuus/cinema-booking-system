@@ -9,7 +9,9 @@ seats.forEach(seat => {
   // dodaj zdarzenie na kliknięcie
   seat.addEventListener('click', () => {
     // co ma się dziać po kliknięciu
-    seat.classList.toggle('selected'); // przełączanie klasy selected
+    if (!seat.classList.contains('taken')) {
+      seat.classList.toggle('selected'); // przełączanie klasy selected
+    }
 
     const selectedSeats = document.querySelectorAll('.seat.selected');
     saveButton.disabled = selectedSeats.length === 0 || selectedSeats.length > maxSeats;

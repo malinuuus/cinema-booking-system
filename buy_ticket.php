@@ -25,9 +25,12 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 require_once "scripts/connect.php";
-$sql = "SELECT m.id, m.title, m.duration, s.hall_number, s.is_subtitles, s.date, s.time FROM movies m INNER JOIN screenings s ON m.id = s.movie_id where s.id = $_SESSION[screening_id]";
-$result = $conn->query($sql);
-$movie = $result->fetch_assoc();
+$sql = "SELECT m.id, m.title, m.duration, s.hall_number, s.is_subtitles, s.date, s.time FROM movies m INNER JOIN screenings s ON m.id = s.movie_id where s.id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param('i', $_SESSION['screening_id']);
+$stmt->execute();
+$movie = $stmt->get_result()->fetch_assoc();
+
 echo <<< MOVIE
 <div>
   <h3>Podsumowanie</h3><br>
@@ -41,9 +44,11 @@ MOVIE;
 $selectedSeats = explode(',', $_SESSION["selectedSeats"]);
 
 foreach ($selectedSeats as $seatId) {
-    $sql = "SELECT row, number FROM seats WHERE id=$seatId";
-    $result = $conn->query($sql);
-    $seat = $result->fetch_assoc();
+    $sql = "SELECT row, number FROM seats WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('i', $seatId);
+    $stmt->execute();
+    $seat = $stmt->get_result()->fetch_assoc();
 
     echo <<< SEAT
         <div>

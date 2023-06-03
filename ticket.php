@@ -23,8 +23,12 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 require_once "scripts/connect.php";
-$sql = "SELECT m.id, m.title, m.duration, s.hall_number, s.is_subtitles, s.date, s.time FROM movies m INNER JOIN screenings s ON m.id = s.movie_id where s.id = $_SESSION[screening_id]";
-$result = $conn->query($sql);
+$sql = "SELECT m.id, m.title, m.duration, s.hall_number, s.is_subtitles, s.date, s.time FROM movies m INNER JOIN screenings s ON m.id = s.movie_id where s.id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param('i', $_SESSION['screening_id']);
+$stmt->execute();
+$result = $stmt->get_result();
+
 while($movie = $result->fetch_assoc()){
   echo <<< MOVIE
     <div>

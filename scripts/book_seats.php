@@ -1,5 +1,19 @@
 <?php
+// skrypt po kliknięciu płacę
 session_start();
+
+$error = 0;
+
+// sprawdzenie, czy metoda płatności jest wybrana
+if (!isset($_POST["gridRadios"])) {
+    $_SESSION["error"] = "Wybierz metodę płatności!";
+    $error++;
+}
+
+if ($error != 0) {
+    echo "<script>history.back();</script>";
+    exit();
+}
 
 if (isset($_SESSION["selectedSeats"])) {
     require_once "connect.php";

@@ -60,7 +60,10 @@ $nextDayDisabled = $nextDay >= date('Y-m-d', strtotime("+1 week")) ? "disabled" 
       MOVIE;
 
       // wyświetlenie godzind
-      $screeningsResult = $conn->query("SELECT id, TIME_FORMAT(time, '%H:%i') AS time, CONCAT(date, ' ', time) AS datetime FROM screenings WHERE movie_id = $movie[id] AND date = '$date' ORDER BY time");
+      $screeningsStmt = $conn->prepare("SELECT id, TIME_FORMAT(time, '%H:%i') AS time, CONCAT(date, ' ', time) AS datetime FROM screenings WHERE movie_id = ? AND date = ? ORDER BY time");
+      $screeningsStmt->bind_param('is', $movie['id'], $date);
+      $screeningsStmt->execute();
+      $screeningsResult = $screeningsStmt->get_result();
 
       while ($screening = $screeningsResult->fetch_assoc()) {
         $disabledClass = strtotime($screening["datetime"]) < time() ? "disabled" : "";

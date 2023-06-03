@@ -34,7 +34,7 @@ session_start();
     <div class="bg-dark text-light">
     <div class="card-body">
         <h4 class="login-box-msg ml-4">METODY PŁATNOŚCI</h4>
-        <form action="scripts/payment.php" method="post">      
+        <form action="scripts/book_seats.php" method="post">
 
             <div class="form-check my-3">
               <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1">

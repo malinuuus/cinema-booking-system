@@ -11,8 +11,7 @@
       background: gray;
       height: 7px;
       width: 35%;
-      margin: auto;
-      margin-bottom: 20px;
+      margin: 0 auto 20px auto;
     }
     
     .row {
@@ -21,7 +20,7 @@
     }
 
     .seat {
-      background: pink;
+      background: #0024ff;
       display: block;
       width: 20px;
       height: 20px;
@@ -31,7 +30,12 @@
     }
 
     .selected {
-      background: gray;
+      background: #ff7575;
+    }
+
+    .taken {
+        background: #3d3d3d;
+        cursor: auto;
     }
   </style>
 </head>
@@ -46,8 +50,11 @@
   $_SESSION["screening_id"] = $_GET["id"];
 
   require_once "scripts/connect.php";
-  $sql = "SELECT m.id, m.title, m.duration, s.hall_number, s.is_subtitles, CONCAT(s.date, ' ', s.time) AS datetime FROM movies m INNER JOIN screenings s ON m.id = s.movie_id where s.id = $_GET[id]";
-  $result = $conn->query($sql);
+  $sql = "SELECT m.id, m.title, m.duration, s.hall_number, s.is_subtitles, CONCAT(s.date, ' ', s.time) AS datetime FROM movies m INNER JOIN screenings s ON m.id = s.movie_id where s.id = ?";
+  $stmt = $conn->prepare($sql);
+  $stmt->bind_param('i', $_GET['id']);
+  $stmt->execute();
+  $result = $stmt->get_result();
   $movie = $result->fetch_assoc();
 
   if ($result->num_rows == 0 || strtotime($movie["datetime"]) < time()) {
@@ -75,14 +82,24 @@
     <p class="text-center">ekran</p>
     <div class="screen"></div>
     <?php
-    $result = $conn->query("SELECT row FROM seats WHERE hall_number = $movie[hall_number] GROUP BY row");
+    $stmt = $conn->prepare("SELECT row FROM seats WHERE hall_number = ? GROUP BY row");
+    $stmt->bind_param('i', $movie['hall_number']);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
     while ($row = $result->fetch_assoc()) {
       echo "<div class='row justify-content-center'>$row[row]";
-      $seatsResult = $conn->query("SELECT id, number FROM seats WHERE hall_number = $movie[hall_number] AND row = $row[row]");
+      $seatsStmt = $conn->prepare("SELECT s.id, s.number, IF(r.id IS NULL, 0, 1) AS is_taken FROM seats s LEFT JOIN reservations r ON s.id = r.seat_id AND r.screening_id = ? WHERE s.hall_number = ? AND s.row = ?");
+      $seatsStmt->bind_param('iii', $_SESSION['screening_id'], $movie['hall_number'], $row['row']);
+      $seatsStmt->execute();
+      $seatsResult = $seatsStmt->get_result();
 
       while ($seat = $seatsResult->fetch_assoc()) {
-        echo "<span class='seat' id=$seat[id]></span>";
+        if ($seat['is_taken']) {
+            echo "<span class='seat taken' id=$seat[id]></span>";
+        } else {
+            echo "<span class='seat' id=$seat[id]></span>";
+        }
       }
       echo "</div>";
     }
