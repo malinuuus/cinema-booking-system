@@ -14,7 +14,7 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="../dist/css/adminlte.min.css">
 </head>
-<body class="bg-dark hold-transition register-page text-light">
+<body   class="bg-dark hold-transition register-page text-light">
   <?php require_once "header.php"; ?>
 <div class="content px-5 py-4">
 <?php

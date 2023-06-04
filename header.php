@@ -7,9 +7,26 @@
     }
 
     if (isset($_SESSION["user_id"])) {
-        echo "<span>zalogowano</span>";
+        require_once "scripts/connect.php";
+    
+        $user_id =$_SESSION["user_id"];
+        $sql = "SELECT first_name, last_name FROM customers WHERE id= ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('s', $user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if($result->num_rows >0){
+            $user = $result->fetch_assoc();
+            echo $user['first_name'];
+            echo " ";
+            echo $user['last_name'];
+        }
+       
     } else {
         echo "<a href='login.php'>zaloguj się</a>";
     }
+
+ 
+
     ?>
 </nav>
