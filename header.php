@@ -7,8 +7,8 @@
     }
 
     if (isset($_SESSION["user_id"])) {
+        //echo "<span>zalogowano</span>";
         require_once "scripts/connect.php";
-    
         $user_id =$_SESSION["user_id"];
         $sql = "SELECT first_name, last_name FROM customers WHERE id= ?";
         $stmt = $conn->prepare($sql);
@@ -26,7 +26,11 @@
         echo "<a href='login.php'>zaloguj się</a>";
     }
 
- 
-
     ?>
+
+    <div class="nav-item d-sm-inline-block p-3">
+        <a href="./scripts/logout.php" class="nav-link">Wyloguj</a>
+    </div>
+
+
 </nav>

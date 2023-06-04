@@ -25,6 +25,10 @@ if ($result->num_rows == 0) {
     if (password_verify($_POST["pass"], $customer["password"])) {
         // id zalogowanego użytkownika
         $_SESSION["user_id"] = $customer["id"];
+
+        $_SESSION["logged"]["first_name"] = $customer["first_name"];
+	    $_SESSION["logged"]["session_id"] = session_id();
+        
         $redirect = isset($_GET["redirect"]) ? $_GET["redirect"] : "../index.php";
         header("location: $redirect");
     } else {

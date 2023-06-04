@@ -56,19 +56,27 @@ foreach ($selectedSeats as $seatId) {
         </div>
     SEAT;
 }
+
+
+if (isset($_SESSION["logged"])){
+    echo <<< ZALOGOWANY
+      <a href="./payment.php" class="text-center">PŁATNOŚĆ</a>
+    </div>
+ZALOGOWANY;
+  }else {
+    echo <<< NIEZALOGOWANY
+    <div class="col-7">
+      <a href="./login.php?redirect=../payment.php" class="text-center">KONTYNUUJ Z LOGOWANIEM</a>
+    </div>
+
+    <div class="col-7">
+      <a href="./loginguest.php" class="text-center">KONTYNUUJ JAKO GOŚĆ</a>
+    </div>
+
+NIEZALOGOWANY;
+  }
+
 ?>
-
-<div class="col-7">
-    <a href="./login.php?redirect=../payment.php" class="text-center">KONTYNUUJ Z LOGOWANIEM</a>
-</div>
-
-<div class="col-7">
-    <a href="./loginguest.php" class="text-center">KONTYNUUJ JAKO GOŚĆ</a>
-</div>
-
-<div class="col-7">
-    <a href="./payment.php" class="text-center">PŁATNOŚĆ</a>
-</div>
 
 <!-- jQuery -->
 <script src="../plugins/jquery/jquery.min.js"></script>
