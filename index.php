@@ -1,25 +1,6 @@
 <?php
 session_start();
 
-/*
-if (isset($_SESSION["logged"]) && session_status() == 2 && session_id() != $_SESSION["logged"]["session_id"]){
-  header("location: ./logged.php");
-}
-*/
-if (isset($_SESSION["logged"]) && session_status() == 2 && session_id() != $_SESSION["logged"]["session_id"]){
-  header("location: ./index.php");
-}
-
-if (isset($_GET["logout"])){
-  echo <<< ERROR
-     <div class="callout callout-info">
-                <h5>Informacja!</h5>
-                <p>Prawidlowo wylogowano</p>
-              </div>
-ERROR;
-  unset($_GET["logged"]);
-}
-
 if (isset($_GET["date"])) {
     $date = $_GET["date"];
 
@@ -53,7 +34,19 @@ $nextDayDisabled = $nextDay >= date('Y-m-d', strtotime("+1 week")) ? "disabled" 
   <title>Cinema</title>
 </head>
 <body class="bg-dark text-light">
-  <?php require_once "header.php"; ?>
+  <?php
+  if (isset($_SESSION["logout"])){
+    echo <<< ERROR
+        <div class="callout callout-info">
+            <h5>Informacja!</h5>
+            <p>Prawidlowo wylogowano</p>
+        </div>
+    ERROR;
+    unset($_SESSION["logout"]);
+  }
+
+  require_once "header.php";
+  ?>
   <div class="content px-5 py-4">
     <h3>Repertuar</h3>
     <div class="bg-dark d-flex align-items-center">

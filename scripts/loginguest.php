@@ -24,7 +24,7 @@ if ($error != 0) {
 
 require_once "./connect.php";
 
-$sql = "SELECT * FROM customers WHERE email = ?";
+$sql = "SELECT * FROM customers WHERE email = ? AND is_user = 1";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param('s', $_POST["email1"]);
 $stmt->execute();
@@ -43,10 +43,14 @@ $stmt = $conn->prepare("INSERT INTO `customers` (`first_name`, `last_name`, `ema
 $stmt->bind_param('sss', $_POST["first_name"], $_POST["last_name"], $_POST["email1"]);
 $stmt->execute();
 
-echo $stmt->affected_rows;
-
 if ($stmt->affected_rows == 1) {
     $_SESSION["success"] = "Dodano gościa $_POST[first_name] $_POST[last_name]";
 } else {
     $_SESSION["error"] = "Nie udało sie dodać rekordu ";
+    echo "<script>history.back();</script>";
+    exit();
 }
+
+$result = $conn->query("SELECT MAX(id) AS id FROM customers");
+$_SESSION["customer_id"] = $result->fetch_assoc()['id'];
+header('location: ../payment.php');

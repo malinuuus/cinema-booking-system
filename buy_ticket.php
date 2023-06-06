@@ -58,7 +58,7 @@ foreach ($selectedSeats as $seatId) {
 }
 
 
-if (isset($_SESSION["logged"])){
+if (isset($_SESSION["user_id"])){
     echo <<< ZALOGOWANY
       <a href="./payment.php" class="text-center">PŁATNOŚĆ</a>
     </div>
