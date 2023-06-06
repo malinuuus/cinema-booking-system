@@ -57,17 +57,19 @@ $nextDayDisabled = $nextDay >= date('Y-m-d', strtotime("+1 week")) ? "disabled" 
     <?php
     require_once "scripts/connect.php";
 
-    $sql = "SELECT m.id, m.title, m.description, m.premiere_date, m.duration FROM movies m INNER JOIN screenings s ON m.id = s.movie_id WHERE s.date = ? GROUP BY m.id";
+    $sql = "SELECT m.id, m.title, m.description, m.premiere_date, m.duration, m.cover_path FROM movies m INNER JOIN screenings s ON m.id = s.movie_id WHERE s.date = ? GROUP BY m.id";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('s', $date);
     $stmt->execute();
     $result = $stmt->get_result();
 
     while($movie = $result->fetch_assoc()){
+      $coverPath = $movie['cover_path'] ? $movie['cover_path'] : './images/blank-image.jpg';
+
       echo <<< MOVIE
         <div class="bg-dark my-3 py-3 border-bottom">
           <h3>$movie[title]</h3>
-          <img src="images/straz.jpg" width="150">
+          <img src=$coverPath alt="" width="150">
           <p>czas trwania: $movie[duration] min</p>
           <p>premiera: $movie[premiere_date]</p>
           <p>opis: $movie[description]</p>

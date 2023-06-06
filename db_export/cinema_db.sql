@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 18 Maj 2023, 09:52
+-- Czas generowania: 06 Cze 2023, 20:18
 -- Wersja serwera: 10.4.27-MariaDB
 -- Wersja PHP: 8.2.0
 
@@ -41,8 +41,8 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `first_name`, `last_name`, `email`, `password`, `is_user`) VALUES
-(1, 'Jan', 'Kowalski', 'jan@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$bUI5UGd5YTlzT1F2M0FNUQ$M2hwOF15YoIkewiMQSlCxObLaiBobvSk/M7q+hUU4TE', 1),
-(3, 'Tomasz', 'Malinowski', 'tomasz.malinowski1812@gmail.com', NULL, 0);
+(6, 'Jan', 'Kowalski', 'jan@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$T2V5RTRpQnY5elhrbk9wVg$ltBwKWSNGz+9X/NSIWdxKnQy6jMK47rKlKKBoVuszE8', 1),
+(7, 'Tomasz', 'Malinowski', 'tomasz.malinowski@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$V1RackNkQy5GVklrRVA5ZQ$uyFUYXAE5ycsVsyfywZRs/aQFttDBawe87VjOVLnF/I', 1);
 
 -- --------------------------------------------------------
 
@@ -76,17 +76,18 @@ CREATE TABLE `movies` (
   `description` varchar(1000) NOT NULL,
   `premiere_date` date NOT NULL,
   `duration` int(11) NOT NULL,
-  `genre_id` int(11) UNSIGNED NOT NULL
+  `genre_id` int(11) UNSIGNED NOT NULL,
+  `cover_path` varchar(40) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Zrzut danych tabeli `movies`
 --
 
-INSERT INTO `movies` (`id`, `title`, `description`, `premiere_date`, `duration`, `genre_id`) VALUES
-(1, 'Strażnicy galaktyki', 'W „Strażnikach Galaktyki vol. 3” Marvel Studios nasza ulubiona banda odmieńców wygląda obecnie trochę inaczej. Po nabyciu Knowhere od Kolekcjonera Strażnicy pracują nad naprawieniem ogromnych szkód wyrządzonych przez Thanosa — zdeterminowani, by uczynić Knowhere bezpiecznym schronieniem nie tylko dla nich samych, ale także dla wszystkich uchodźców wysiedlonych przez surowy wszechświat. Ale wkrótce ich życie zostaje wywrócone do góry nogami przez echa burzliwej przeszłości Rocketa. Peter Quill, wciąż niepogodzony ze stratą Gamory, musi zebrać wokół siebie swoją bandę na niebezpieczną misję ratowania życia Rocketa — misję, która, jeśli nie zakończy się powodzeniem, może doprowadzić do końca Strażników w dotychczasowej formie.\r\n\r\n', '2023-05-05', 150, 1),
-(2, 'Martwe Zło: Przebudzenie', 'Akcja filmu Martwe zło: Przebudzenie przenosi się z lasu do miasta. Fabuła opowiada o dwóch nieutrzymujących ze sobą kontaktu siostrach (w ich rolach Sutherland i Sullivan). Ich spotkanie zostaje przerwane pojawieniem się demonów, które potrafią przejmować panowanie nad ludzkimi ciałami. W obliczu najkoszmarniejszej wersji rodziny, jaką można sobie wyobrazić, siostry zmuszone są podjąć brutalną walkę o przetrwanie.', '2023-04-21', 97, 2),
-(3, 'Super Mario Bros. Film', 'Animacja jest wyprodukowana przez Chrisa Meledandri z Illumination („Minionki”) oraz Shigeru Miyamoto z Nintendo. „Super Mario Bros” jest oparty na kultowej grze komputerowej z lat osiemdziesiątych . Głosów użyczyli min: Chris Pratt jako Mario oraz Anya Taylor-Joy jako księżniczka Peach.', '2023-05-26', 92, 3);
+INSERT INTO `movies` (`id`, `title`, `description`, `premiere_date`, `duration`, `genre_id`, `cover_path`) VALUES
+(1, 'Strażnicy galaktyki', 'W „Strażnikach Galaktyki vol. 3” Marvel Studios nasza ulubiona banda odmieńców wygląda obecnie trochę inaczej. Po nabyciu Knowhere od Kolekcjonera Strażnicy pracują nad naprawieniem ogromnych szkód wyrządzonych przez Thanosa — zdeterminowani, by uczynić Knowhere bezpiecznym schronieniem nie tylko dla nich samych, ale także dla wszystkich uchodźców wysiedlonych przez surowy wszechświat. Ale wkrótce ich życie zostaje wywrócone do góry nogami przez echa burzliwej przeszłości Rocketa. Peter Quill, wciąż niepogodzony ze stratą Gamory, musi zebrać wokół siebie swoją bandę na niebezpieczną misję ratowania życia Rocketa — misję, która, jeśli nie zakończy się powodzeniem, może doprowadzić do końca Strażników w dotychczasowej formie.\r\n\r\n', '2023-05-05', 150, 1, './images/movies/straznicy.jpg'),
+(2, 'Martwe Zło: Przebudzenie', 'Akcja filmu Martwe zło: Przebudzenie przenosi się z lasu do miasta. Fabuła opowiada o dwóch nieutrzymujących ze sobą kontaktu siostrach (w ich rolach Sutherland i Sullivan). Ich spotkanie zostaje przerwane pojawieniem się demonów, które potrafią przejmować panowanie nad ludzkimi ciałami. W obliczu najkoszmarniejszej wersji rodziny, jaką można sobie wyobrazić, siostry zmuszone są podjąć brutalną walkę o przetrwanie.', '2023-04-21', 97, 2, './images/movies/martwe-zlo.jpg'),
+(3, 'Super Mario Bros. Film', 'Animacja jest wyprodukowana przez Chrisa Meledandri z Illumination („Minionki”) oraz Shigeru Miyamoto z Nintendo. „Super Mario Bros” jest oparty na kultowej grze komputerowej z lat osiemdziesiątych . Głosów użyczyli min: Chris Pratt jako Mario oraz Anya Taylor-Joy jako księżniczka Peach.', '2023-05-26', 92, 3, './images/movies/super-mario.jpg');
 
 -- --------------------------------------------------------
 
@@ -102,16 +103,6 @@ CREATE TABLE `reservations` (
   `customer_id` int(10) UNSIGNED NOT NULL,
   `seat_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Zrzut danych tabeli `reservations`
---
-
-INSERT INTO `reservations` (`id`, `ticket_number`, `is_paid`, `screening_id`, `customer_id`, `seat_id`) VALUES
-(1, 'cm2mcj2ma', 1, 1, 1, 4),
-(2, '3dsamidz', 0, 6, 1, 13),
-(3, '3dsamidz', 0, 6, 1, 14),
-(4, '3dsamidz', 0, 6, 1, 15);
 
 -- --------------------------------------------------------
 
@@ -134,12 +125,13 @@ CREATE TABLE `screenings` (
 --
 
 INSERT INTO `screenings` (`id`, `date`, `time`, `price`, `is_subtitles`, `movie_id`, `hall_number`) VALUES
-(1, '2023-05-14', '14:20:00', 28.9, 1, 1, 2),
-(2, '2023-05-14', '17:40:00', 26.9, 0, 1, 2),
-(3, '2023-05-15', '12:00:00', 28.9, 1, 1, 1),
-(4, '2023-05-13', '12:30:00', 26, 0, 1, 2),
-(5, '2023-05-13', '21:20:00', 22.9, 1, 2, 1),
-(6, '2023-05-15', '15:40:00', 22.9, 0, 3, 1);
+(1, '2023-06-06', '14:20:00', 28.9, 1, 1, 2),
+(2, '2023-06-06', '17:40:00', 26.9, 0, 1, 2),
+(3, '2023-06-07', '12:00:00', 28.9, 1, 1, 1),
+(4, '2023-06-07', '12:30:00', 26, 0, 1, 2),
+(5, '2023-06-08', '21:20:00', 22.9, 1, 2, 1),
+(6, '2023-06-08', '15:40:00', 22.9, 0, 3, 1),
+(7, '2023-06-08', '20:00:00', 22.9, 0, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -239,7 +231,7 @@ ALTER TABLE `seats`
 -- AUTO_INCREMENT dla tabeli `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT dla tabeli `genres`
@@ -257,13 +249,13 @@ ALTER TABLE `movies`
 -- AUTO_INCREMENT dla tabeli `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT dla tabeli `screenings`
 --
 ALTER TABLE `screenings`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT dla tabeli `seats`
