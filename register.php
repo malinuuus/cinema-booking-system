@@ -20,7 +20,7 @@ session_start();
 <?php
 if (isset($_SESSION["error"])) {
     echo <<< ERROR
-       <div class="alert alert-danger alert-dismissible"> 
+       <div class="fixed-top alert alert-danger alert-dismissible m-3"> 
            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
            <h5><i class="icon fas fa-ban"></i>Uwaga!</h5>
            $_SESSION[error]
@@ -31,7 +31,7 @@ if (isset($_SESSION["error"])) {
 
 if (isset($_SESSION["success"])) {
     echo <<< ERROR
-       <div class="alert alert-success alert-dismissible"> 
+       <div class="fixed-top alert alert-success alert-dismissible m-3"> 
            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
            <h5><i class="icon fas fa-check"></i>Komunikat!</h5>
            $_SESSION[success]
@@ -101,10 +101,7 @@ if (isset($_SESSION["success"])) {
         </form>
     </div>
 </div>
-<!-- jQuery -->
-<script src="../plugins/jquery/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-<!-- AdminLTE App -->
-<script src="../dist/js/adminlte.min.js"></script>
+<script src="./js/closeAlert.js"></script>
 </body>
 </html>

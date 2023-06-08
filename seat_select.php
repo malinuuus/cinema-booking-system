@@ -56,6 +56,7 @@
   $stmt->execute();
   $result = $stmt->get_result();
   $movie = $result->fetch_assoc();
+  $subtitles = $movie["is_subtitles"] ? "napisy" : "bez napisów";
 
   if ($result->num_rows == 0 || strtotime($movie["datetime"]) < time()) {
       echo <<< MESSAGE
@@ -68,7 +69,7 @@
 
     echo <<< MOVIE
       <div>
-        <h3 class="mb-3">$movie[title] $movie[is_subtitles]</h3>
+        <h3 class="mb-3">$movie[title] | $subtitles</h3>
         <p>czas trwania: $movie[duration] min</p>
         <p>numer sali: $movie[hall_number] </p>
         <p>$movie[datetime]</p>

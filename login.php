@@ -14,7 +14,7 @@ session_start();
 <?php
 if (isset($_SESSION["error"])) {
     echo <<< ERROR
-       <div class="alert alert-danger alert-dismissible"> 
+       <div class="fixed-top alert alert-danger alert-dismissible m-3"> 
            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
            <h5><i class="icon fas fa-ban"></i>Uwaga!</h5>
            $_SESSION[error]
@@ -25,7 +25,7 @@ if (isset($_SESSION["error"])) {
 
 if (isset($_SESSION["success"])) {
     echo <<< ERROR
-       <div class="alert alert-success alert-dismissible"> 
+       <div class="fixed-top alert alert-danger alert-dismissible m-3"> 
            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
            <h5><i class="icon fas fa-check"></i>Komunikat!</h5>
            $_SESSION[success]
@@ -67,5 +67,6 @@ if (isset($_SESSION["success"])) {
         </form>
     </div>
 </div>
+<script src="./js/closeAlert.js"></script>
 </body>
 </html>

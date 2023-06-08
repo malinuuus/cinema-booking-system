@@ -7,21 +7,13 @@ session_start();
 <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Płatność</title>
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="../dist/css/adminlte.min.css">
-    
 </head>
 <body class="bg-dark hold-transition payment-page text-light">
     <?php 
     if (isset($_SESSION["error"])) {
         echo <<< ERROR
-           <div class="alert alert-danger alert-dismissible"> 
+           <div class="fixed-top alert alert-danger alert-dismissible m-3"> 
                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                <h5><i class="icon fas fa-ban"></i>Uwaga!</h5>
                $_SESSION[error]
@@ -69,8 +61,8 @@ session_start();
                 <button type="submit" class="btn btn-primary btn-block">Płacę</button>
             </div>
         </form>
-
     </div>
 </div>
+<script src="./js/closeAlert.js"></script>
 </body>
 </html>

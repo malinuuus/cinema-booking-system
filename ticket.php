@@ -22,55 +22,33 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+if (!isset($_SESSION["selectedSeats"])) {
+    header("location: ./index.php");
+    exit();
+}
+
 require_once "scripts/connect.php";
 $sql = "SELECT m.id, m.title, m.duration, s.hall_number, s.is_subtitles, s.date, s.time FROM movies m INNER JOIN screenings s ON m.id = s.movie_id where s.id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param('i', $_SESSION['screening_id']);
 $stmt->execute();
 $result = $stmt->get_result();
+$movie = $result->fetch_assoc();
 
-while($movie = $result->fetch_assoc()){
-  echo <<< MOVIE
-    <div>
-      <br><p>twój bilet:
-      <h3>$movie[title] </h3>
+echo <<< MOVIE
+<div>
+  <p>twój bilet: </p>
+  <div class="bg-secondary p-2 rounded-4">
+      <h3>$movie[title]</h3>
       <h5>$movie[date] $movie[time]</h5>
       <h5>Sala $movie[hall_number]</h5>
-    </div>
-  MOVIE;
-}
-/*
-$selectedSeats = explode(',', $_POST["selectedSeats"]);
+MOVIE;
 
-foreach ($selectedSeats as $key => $value) {
-    
-    $sql = "SELECT row, number FROM seats WHERE id=$value";
-    $result = $conn->query($sql);
-    $seat = $result->fetch_assoc();
+require_once "./scripts/get_selected_seats.php";
 
-    echo <<< SEAT
-        <div>
-            <p>Rząd: $seat[row], Miejsce: $seat[number]</p>
-        </div>
-    SEAT;
-}
-*/
-
-/*
-$sql = "SELECT row, number FROM seats WHERE id = $_POST[selectedSeats]";
-$result = $conn->query($sql);
-while($movie = $result->fetch_assoc()){
-    echo <<< SEAT
-    <div>
-        <p>Rząd: $seat[row], Miejsce: $seat[number]</p>
-    </div>
-SEAT;
-}
-*/
-
+echo "</div></div>";
+unset($_SESSION["selectedSeats"]);
 ?>
-
-
 </body>
 </html>
 

@@ -32,7 +32,6 @@ if (isset($_SESSION["selectedSeats"])) {
         $resultSeats->execute();
     }
 
-    unset($_SESSION["selectedSeats"]);
     unset($_SESSION["customer_id"]);
     header("location: ../ticket.php");
 } else {
