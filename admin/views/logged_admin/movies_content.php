@@ -125,7 +125,7 @@
                         <h3 class="card-title"><?php echo $cardTitle; ?></h3>
                     </div>
 
-                    <form method="POST" action="<?php echo $actionPath; ?>">
+                    <form method="POST" action="<?php echo $actionPath; ?>" enctype="multipart/form-data">
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="title">Tytuł</label>
@@ -159,6 +159,15 @@
                                 }
                                 ?>
                                 </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputFile">Zdjęcie</label>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" name="image" class="custom-file-input" id="exampleInputFile" accept="image/*">
+                                        <label class="custom-file-label" for="exampleInputFile">Wybierz plik</label>
+                                    </div>
+                                </div>
                             </div>
                             <?php
                             if (isset($_GET["edit"])) {
