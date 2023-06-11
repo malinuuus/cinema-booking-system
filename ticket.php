@@ -46,7 +46,11 @@ MOVIE;
 
 require_once "./scripts/get_selected_seats.php";
 
-echo "</div></div>";
+echo <<< BUTTON
+</div>
+    <a href="./" class="btn btn-secondary btn-block mt-3">Powrót na stronę główną</a>
+</div>
+BUTTON;
 unset($_SESSION["selectedSeats"]);
 ?>
 </body>

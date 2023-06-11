@@ -14,8 +14,11 @@ if ($rows > 0) {
     exit();
 }
 
-$sql = "DELETE FROM movies WHERE id = $_POST[movie_id]";
-$conn->query($sql);
+$sql = "DELETE FROM movies WHERE id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $_POST["movie_id"]);
+$stmt->execute();
+
 $deleteMovie = 0;
 if ($conn->affected_rows != 0) {
     $deleteMovie = $_POST["movie_id"];

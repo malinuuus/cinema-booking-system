@@ -65,4 +65,4 @@ if ($stmt->affected_rows == 1) {
     $_SESSION["error"] = "Nie udało sie dodać rekordu ";
 }
 
-header("location: ../login.php");
+header("location: ../login.php?redirect=../payment.php");

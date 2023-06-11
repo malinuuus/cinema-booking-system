@@ -1,6 +1,5 @@
 <?php
 session_start();
-//print_r($_POST);
 $error = 0;
 foreach($_POST as $key => $value){
    // echo "$key: $value<br>";
@@ -21,9 +20,13 @@ if (empty($value)){
 
 
 require_once "../../scripts/connect.php";
-$sql = "INSERT INTO `screenings` (`id`, `date`, `time`, `price`, `is_subtitles`, `movie_id`, `hall_number`) VALUES (NULL, '$_POST[date]', '$_POST[time]', '$_POST[price]', '$_POST[is_subtitles]', '$_POST[movie_id]', '$_POST[hall_number]');";
-$conn->query($sql);
 
+$subtitles = isset($_POST["is_subtitles"]) ? 1 : 0;
+
+$sql = "INSERT INTO screenings (date, time, price, is_subtitles, movie_id, hall_number) VALUES (?, ?, ?, ?, ?, ?);";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("ssdiii", $_POST["date"], $_POST["time"], $_POST["price"], $subtitles, $_POST["movie_id"], $_POST["hall_number"]);
+$stmt->execute();
 
 if( $conn->affected_rows ==1){
     //echo "Prawidłowo dodano rekord";

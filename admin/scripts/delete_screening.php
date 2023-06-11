@@ -14,8 +14,11 @@ if ($rows > 0) {
   exit();
 }
 
-$sql = "DELETE FROM screenings WHERE id = $_POST[screening_id]";
-$conn->query($sql);
+$sql = "DELETE FROM screenings WHERE id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $_POST["screening_id"]);
+$stmt->execute();
+
 $deleteScreening = 0;
 if ($conn->affected_rows != 0) {
     $deleteScreening =  $_POST["screening_id"];
