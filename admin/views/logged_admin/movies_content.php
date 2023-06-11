@@ -10,7 +10,7 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="./logged.php">Strona główna</a></li>
+                        <li class="breadcrumb-item"><a href="./dashboard.php">Strona główna</a></li>
                         <li class="breadcrumb-item active">Filmy</li>
                     </ol>
                 </div><!-- /.col -->
@@ -49,6 +49,9 @@
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="CSS grade: activate to sort column ascending">Zdjęcie
                                 </th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                    aria-label="CSS grade: activate to sort column ascending">
+                                </th>
                             </tr>
                             </thead>
                             <tbody>
@@ -72,10 +75,10 @@
                                     <td>
                                         <form method="POST" action="./scripts/delete_movies.php">
                                             <input type="hidden" name="movie_id" value="$movie[id]" />
-                                            <button class="btn btn-light btn-xs" type="submit">usuń</button>
+                                            <button class="btn btn-danger btn-xs" type="submit">usuń</button>
                                         </form>
                                         <a href="./movies.php?edit=$movie[id]">
-                                            <button class="btn btn-light btn-xs">edytuj</button>
+                                            <button class="btn btn-primary btn-xs">edytuj</button>
                                         </a>
                                     </td>
                                 </tr>
@@ -86,7 +89,7 @@
                         </table>
                     </div>
                 </div>
-                <div class="card card-primary">
+                <div class="card card-primary mt-3">
                     <?php
                     if (isset($_GET["edit"])) {
                         require_once "../scripts/connect.php";

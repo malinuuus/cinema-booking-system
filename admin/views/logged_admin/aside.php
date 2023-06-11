@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-        <img src="../AdminLTE-3.2.0/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <a href="" class="brand-link">
+        <span class="mx-3">🎬</span>
         <span class="brand-text font-weight-light">Kino - admin</span>
     </a>
 
@@ -15,13 +15,7 @@
             <div class="info">
                 <a href="#" class="d-block">
                     <?php
-                    require_once "../scripts/connect.php";
-                    $stmt = $conn->prepare("SELECT * FROM admins WHERE id = ?");
-                    $stmt->bind_param("i", $_SESSION["admin_id"]);
-                    $stmt->execute();
-                    $result = $stmt->get_result();
-                    $admin = $result->fetch_assoc();
-                    echo "$admin[first_name] $admin[last_name]";
+                    echo $_SESSION["logged"]["first_name"]." ".$_SESSION["logged"]["last_name"];
                     ?>
                 </a>
             </div>

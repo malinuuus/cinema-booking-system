@@ -8,7 +8,7 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="./logged.php">Strona główna</a></li>
+                        <li class="breadcrumb-item"><a href="./dashboard.php">Strona główna</a></li>
                         <li class="breadcrumb-item active">Użytkownicy</li>
                     </ol>
                 </div><!-- /.col -->
@@ -37,13 +37,16 @@
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="Platform(s): activate to sort column ascending">Email
-                                
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                    aria-label="Platform(s): activate to sort column ascending">
+                                </th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php
                             require_once "../scripts/connect.php";
-                            $result = $conn->query("SELECT id, first_name, last_name, email  FROM customers WHERE is_user = 1");
+                            $result = $conn->query("SELECT id, first_name, last_name, email  FROM customers WHERE is_user = 1 ORDER BY last_name, first_name");
 
                             while ($user = $result->fetch_assoc()) {
                                 echo <<< USERROW
@@ -54,10 +57,10 @@
                                     <td>
                                         <form method="POST" action="./scripts/delete_users.php">
                                             <input type="hidden" name="id" value="$user[id]"/>
-                                            <button class="btn btn-light btn-xs" type="submit">usuń</button>
+                                            <button class="btn btn-danger btn-xs" type="submit">usuń</button>
                                         </form>
                                         <a href="./users.php?edit=$user[id]">
-                                            <button class="btn btn-light btn-xs">edytuj</button>
+                                            <button class="btn btn-primary btn-xs">edytuj</button>
                                         </a>
                                     </td>
                                 </tr>
@@ -70,7 +73,7 @@
                     </div>
                 </div>
                
-                <div class="card card-primary">
+                <div class="card card-primary mt-3">
                     <?php
                     if (isset($_GET["edit"])) {
                         require_once "../scripts/connect.php";

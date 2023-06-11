@@ -10,7 +10,7 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="./logged.php">Strona główna</a></li>
+                        <li class="breadcrumb-item"><a href="./dashboard.php">Strona główna</a></li>
                         <li class="breadcrumb-item active">Seanse</li>
                     </ol>
                 </div><!-- /.col -->
@@ -49,9 +49,9 @@
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="CSS grade: activate to sort column ascending">Numer sali
                                 </th>
-                                <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-label="CSS grade: activate to sort column ascending">Zdjęcie
-                                </th> -->
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                    aria-label="CSS grade: activate to sort column ascending">
+                                </th>
                                
                             </tr>
                             </thead>
@@ -64,7 +64,7 @@
                                 $subtitles = $scr["is_subtitles"] ? "napisy" : "bez napisów";
                                 echo <<< USERROW
                                 <tr>
-                                    <td class="dtr-control sorting_1" tabindex="0">$scr[title]</td>
+                                    <td data-order="$scr[date]">$scr[title]</td>
                                     <td>$scr[date]</td>
                                     <td>$scr[time]</td>
                                     <td>$scr[price] zł</td>
@@ -73,10 +73,10 @@
                                     <td>
                                         <form method="POST" action="./scripts/delete_screening.php">
                                             <input type="hidden" name="screening_id" value="$scr[id]" />
-                                            <button class="btn btn-light btn-xs" type="submit">usuń</button>
+                                            <button class="btn btn-danger btn-xs" type="submit">usuń</button>
                                         </form>
                                         <a href="./screenings.php?edit=$scr[id]">
-                                            <button class="btn btn-light btn-xs">edytuj</button>
+                                            <button class="btn btn-primary btn-xs">edytuj</button>
                                         </a>
                                     </td>
                                 </tr>
@@ -87,7 +87,7 @@
                         </table>
                     </div>
                 </div>
-                <div class="card card-primary">
+                <div class="card card-primary mt-3">
                     <?php
                     if (isset($_GET["edit"])) {
                         require_once "../scripts/connect.php";
@@ -192,6 +192,5 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>

@@ -1,9 +1,17 @@
+<?php
+session_start();
+
+if (!isset($_SESSION["logged"]) || session_status() != 2) {
+    header("location: ./login.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Dashboard 2</title>
+    <title>Kino - panel admina</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -19,7 +27,6 @@
 
     <!-- Navbar -->
     <?php
-    session_start();
     require_once "views/navbar.php";
     ?>
     <!-- /.navbar -->

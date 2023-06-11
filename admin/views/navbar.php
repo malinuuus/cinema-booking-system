@@ -8,7 +8,10 @@
             <a href="./dashboard.php" class="nav-link">Strona główna</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="../scripts/logout.php" class="nav-link">Wyloguj</a>
+            <a href="../" class="nav-link">System kina</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="./scripts/logout.php" class="nav-link">Wyloguj</a>
         </li>
     </ul>
 

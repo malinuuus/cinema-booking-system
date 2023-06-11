@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-if (isset($_SESSION["logged"]) && session_status() == 2 && session_id() == $_SESSION["logged"]["session_id"]) {
-    header("location: logged.php");
+if (isset($_SESSION["logged"]) && session_status() == 2) {
+    header("location: ./dashboard.php");
     exit();
 }
 ?>
@@ -11,7 +11,7 @@ if (isset($_SESSION["logged"]) && session_status() == 2 && session_id() == $_SES
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Log in (v2)</title>
+    <title>Panel admina - logowanie</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
