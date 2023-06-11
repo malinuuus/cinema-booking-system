@@ -1,23 +1,19 @@
 <?php
 session_start();
-//print_r($_POST);
 $error = 0;
 foreach($_POST as $key => $value){
-   // echo "$key: $value<br>";
-
+    
 if (empty($value)){
-    //echo "$key<br>";
     echo "<script>history.back();</script>";
-    $_SESSION["error"]="Wypełnij wszystkie";
+    $_SESSION["error"]="Wypełnij wszystkie pola";
     exit();
     }
 }
-  
 
-    if ($error !=0){
-        echo "<script> history.back();</script>";
-        exit();
-    }
+if ($error !=0){
+    echo "<script> history.back();</script>";
+    exit();
+}
 
 
 require_once "../../scripts/connect.php";
@@ -25,12 +21,10 @@ $sql = "INSERT INTO `movies` (`id`,`title`, `description`, `duration`, `premiere
 $conn->query($sql);
 
 
-if( $conn->affected_rows ==1){
-    //echo "Prawidłowo dodano rekord";
-    $_SESSION["error"]="Prawidłowo dodano rekord";
-}else{
-    //echo "Nie dodano rekordu";
-    $_SESSION["error"]="Nie dodano rekordu";
+if ($conn->affected_rows == 1){
+    $_SESSION["success"] = "Prawidłowo dodano rekord";
+} else {
+    $_SESSION["error"] = "Nie dodano rekordu";
 }
 
 header("location: ../movies.php");

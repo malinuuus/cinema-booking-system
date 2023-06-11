@@ -9,11 +9,11 @@ $result = $stmt->get_result();
 $rows = $result->num_rows;
 $sql = "DELETE FROM customers WHERE id = $_POST[id]";
 $conn->query($sql);
-$deleteUser = 0;
-if ($conn->affected_rows != 0) {
-    $deleteUser =  $_POST["id"];
-}else{
-    $deleteUser = 0;
+
+if ($conn->affected_rows == 1) {
+    $_SESSION["success"] = "Prawidłowo usunięto rekord";
+} else {
+    $_SESSION["error"] = "Nie usunięto rekordu!";
 }
 
 header("location: ../users.php");

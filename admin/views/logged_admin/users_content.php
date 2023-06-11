@@ -1,6 +1,7 @@
 <div class="content-wrapper">
     <div class="content-header">
         <div class="container-fluid">
+            <?php require_once "./views/error.php"; ?>
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1 class="m-0">Użytkownicy</h1>
@@ -42,7 +43,7 @@
                             <tbody>
                             <?php
                             require_once "../scripts/connect.php";
-                            $result = $conn->query("SELECT id, first_name, last_name, email  FROM customers");
+                            $result = $conn->query("SELECT id, first_name, last_name, email  FROM customers WHERE is_user = 1");
 
                             while ($user = $result->fetch_assoc()) {
                                 echo <<< USERROW
@@ -53,14 +54,12 @@
                                     <td>
                                         <form method="POST" action="./scripts/delete_users.php">
                                             <input type="hidden" name="id" value="$user[id]"/>
-                                            <button type="submit">usuń</button>
+                                            <button class="btn btn-light btn-xs" type="submit">usuń</button>
                                         </form>
+                                        <a href="./users.php?edit=$user[id]">
+                                            <button class="btn btn-light btn-xs">edytuj</button>
+                                        </a>
                                     </td>
-                                    <td>
-                                    <form method="POST"  action="./scripts/update_users.php">>
-                                        <button type="submit">edytuj</button>
-                                    </form>
-                                </td>
                                 </tr>
                             USERROW;
                             }
@@ -70,6 +69,65 @@
                         </table>
                     </div>
                 </div>
+               
+                <div class="card card-primary">
+                    <?php
+                    if (isset($_GET["edit"])) {
+                        require_once "../scripts/connect.php";
+                        $stmt = $conn->prepare("SELECT * FROM customers WHERE id = ?");
+                        $stmt->bind_param("i", $_GET["edit"]);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+                        $user = $result->fetch_assoc();
+
+                        /*
+                        $cardTitle = "Edytuj uzytkownika";
+                        $actionPath = "./scripts/update_users.php";
+                        $submitBtn = "Edytuj";
+                        */
+                        $id = $user["id"];
+                        $first_name = $user["first_name"];
+                        $last_name = $user["last_name"];
+                        $email = $user["email"];
+                        
+                        $cardTitle = "Edytuj użytkownika";
+                    } else {
+                        $cardTitle = "Edytuj użytkownika";
+
+                        $id = "";
+                        $first_name = "";
+                        $last_name = "";
+                        $email = "";
+
+                    }
+                    ?>
+
+                    <div class="card-header">
+                        <h3 class="card-title"><?php echo $cardTitle; ?></h3>
+                    </div>
+
+
+                    <form method="POST" action="./scripts/update_users.php">
+                        <div class="card-body">
+                            
+
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Imie</label>
+                                <input value="<?php echo $first_name; ?>" type="text" name="first_name" class="form-control" id="exampleInputPassword1" placeholder="Imie">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Nazwisko</label>
+                                <input value="<?php echo $last_name; ?>" type="text" name="last_name" class="form-control" id="exampleInputPassword1" placeholder="Nazwisko">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Email</label>
+                                <input value="<?php echo $email; ?>" type="text" name="email" class="form-control" id="exampleInputPassword1" placeholder="Email">
+                            </div>
+                            <input type="hidden" name="id" value="<?php echo $id; ?>" />
+                            
+                    <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Edytuj</button>
+                    </div>
             </div>
         </div>
 

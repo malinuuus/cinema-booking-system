@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 06 Cze 2023, 20:18
+-- Czas generowania: 11 Cze 2023, 13:48
 -- Wersja serwera: 10.4.27-MariaDB
 -- Wersja PHP: 8.2.0
 
@@ -20,6 +20,27 @@ SET time_zone = "+00:00";
 --
 -- Baza danych: `cinema_db`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `admins`
+--
+
+CREATE TABLE `admins` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `first_name` varchar(30) NOT NULL,
+  `last_name` varchar(30) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Zrzut danych tabeli `admins`
+--
+
+INSERT INTO `admins` (`id`, `first_name`, `last_name`, `email`, `password`) VALUES
+(1, 'Admin', 'Admin', 'admin@gmail.com', '$argon2i$v=19$m=16,t=2,p=1$V0R6OEtlRFJLb09iZUdEVQ$7/hsGX9hc+hEOYeS2Gn0Lg');
 
 -- --------------------------------------------------------
 
@@ -41,8 +62,12 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `first_name`, `last_name`, `email`, `password`, `is_user`) VALUES
-(6, 'Jan', 'Kowalski', 'jan@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$T2V5RTRpQnY5elhrbk9wVg$ltBwKWSNGz+9X/NSIWdxKnQy6jMK47rKlKKBoVuszE8', 1),
-(7, 'Tomasz', 'Malinowski', 'tomasz.malinowski@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$V1RackNkQy5GVklrRVA5ZQ$uyFUYXAE5ycsVsyfywZRs/aQFttDBawe87VjOVLnF/I', 1);
+(6, 'Jannn', 'Kowalski', 'jan@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$T2V5RTRpQnY5elhrbk9wVg$ltBwKWSNGz+9X/NSIWdxKnQy6jMK47rKlKKBoVuszE8', 1),
+(21, 'Maria', 'Najzer', 'marianajzer@gmail.com', NULL, 0),
+(22, 'Maria', 'Najzer', 'marianajzer@gmail.com1111', '$2y$10$rW1PgxYYNJ5b1ay2M99MpObcmE0lzXPrCP5svFZgxckjgXS7rEVsS', 1),
+(27, 'zuzia', 'now', 'zuz@gmail.com', '$2y$10$wP7fSpQ4ZMqcOLksRuzH.u0ktXfcDWR4AK/nxKNJAAwvLGWxRUDwK', 1),
+(28, 'zuzia', 'now', 'zuz@gmail.com11111', NULL, 0),
+(29, 'zuzia', 'now', 'zuz@gmail.com111', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -62,7 +87,8 @@ CREATE TABLE `genres` (
 INSERT INTO `genres` (`id`, `name`) VALUES
 (1, 'Akcja'),
 (2, 'Horror'),
-(3, 'Animowany');
+(3, 'Animowany'),
+(4, 'Sensacyjny');
 
 -- --------------------------------------------------------
 
@@ -86,8 +112,10 @@ CREATE TABLE `movies` (
 
 INSERT INTO `movies` (`id`, `title`, `description`, `premiere_date`, `duration`, `genre_id`, `cover_path`) VALUES
 (1, 'Strażnicy galaktyki', 'W „Strażnikach Galaktyki vol. 3” Marvel Studios nasza ulubiona banda odmieńców wygląda obecnie trochę inaczej. Po nabyciu Knowhere od Kolekcjonera Strażnicy pracują nad naprawieniem ogromnych szkód wyrządzonych przez Thanosa — zdeterminowani, by uczynić Knowhere bezpiecznym schronieniem nie tylko dla nich samych, ale także dla wszystkich uchodźców wysiedlonych przez surowy wszechświat. Ale wkrótce ich życie zostaje wywrócone do góry nogami przez echa burzliwej przeszłości Rocketa. Peter Quill, wciąż niepogodzony ze stratą Gamory, musi zebrać wokół siebie swoją bandę na niebezpieczną misję ratowania życia Rocketa — misję, która, jeśli nie zakończy się powodzeniem, może doprowadzić do końca Strażników w dotychczasowej formie.\r\n\r\n', '2023-05-05', 150, 1, './images/movies/straznicy.jpg'),
-(2, 'Martwe Zło: Przebudzenie', 'Akcja filmu Martwe zło: Przebudzenie przenosi się z lasu do miasta. Fabuła opowiada o dwóch nieutrzymujących ze sobą kontaktu siostrach (w ich rolach Sutherland i Sullivan). Ich spotkanie zostaje przerwane pojawieniem się demonów, które potrafią przejmować panowanie nad ludzkimi ciałami. W obliczu najkoszmarniejszej wersji rodziny, jaką można sobie wyobrazić, siostry zmuszone są podjąć brutalną walkę o przetrwanie.', '2023-04-21', 97, 2, './images/movies/martwe-zlo.jpg'),
-(3, 'Super Mario Bros. Film', 'Animacja jest wyprodukowana przez Chrisa Meledandri z Illumination („Minionki”) oraz Shigeru Miyamoto z Nintendo. „Super Mario Bros” jest oparty na kultowej grze komputerowej z lat osiemdziesiątych . Głosów użyczyli min: Chris Pratt jako Mario oraz Anya Taylor-Joy jako księżniczka Peach.', '2023-05-26', 92, 3, './images/movies/super-mario.jpg');
+(3, 'Super Mario Bros. Film', 'Animacja jest wyprodukowana przez Chrisa Meledandri z Illumination („Minionki”) oraz Shigeru Miyamoto z Nintendo. „Super Mario Bros” jest oparty na kultowej grze komputerowej z lat osiemdziesiątych . Głosów użyczyli min: Chris Pratt jako Mario oraz Anya Taylor-Joy jako księżniczka Peach.', '2023-05-26', 92, 3, './images/movies/super-mario.jpg'),
+(8, 'Szybcy i wściekli 10', 'Dziesiąty film sagi „Szybcy i wściekli” rozpoczyna ostatni rozdział jednej z najbardziej popularnych globalnych franczyz, która trwa już trzecią dekadę i ma niesłabnącą popularność. W ciągu wielu misji i wbrew przeciwnościom losu Dom Toretto (Vin Diesel) i jego rodzina przechytrzyli i prześcignęli każdego wroga na swojej drodze. Teraz muszą zmierzyć się z najgroźniejszym przeciwnikiem, z jakim kiedykolwiek mieli do czynienia.', '2023-05-19', 141, 4, NULL),
+(12, 'Martwe Zło. Przebudzenie', 'Opowieść o dwóch zranionych siostrach, których spotkanie przerywa pojawienie się opętanych demonów.', '2023-03-15', 98, 2, NULL),
+(14, 'Martwe Zło. Przebudzenie', 'Opowieść o dwóch zranionych siostrach, których spotkanie przerywa pojawienie się opętanych demonów.', '2023-06-11', 110, 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -101,8 +129,24 @@ CREATE TABLE `reservations` (
   `is_paid` tinyint(1) NOT NULL,
   `screening_id` int(10) UNSIGNED NOT NULL,
   `customer_id` int(10) UNSIGNED NOT NULL,
-  `seat_id` int(10) UNSIGNED NOT NULL
+  `seat_id` int(10) UNSIGNED NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Zrzut danych tabeli `reservations`
+--
+
+INSERT INTO `reservations` (`id`, `ticket_number`, `is_paid`, `screening_id`, `customer_id`, `seat_id`, `created_at`) VALUES
+(1, '6482548e47ca1', 1, 2, 6, 22, '2023-06-09 00:22:06'),
+(2, '6482548e47ca1', 1, 2, 6, 23, '2023-06-09 00:22:06'),
+(3, '64834aa589e93', 1, 3, 21, 4, '2023-06-09 17:52:05'),
+(4, '64834aa589e93', 1, 3, 21, 6, '2023-06-09 17:52:05'),
+(5, '6485a9814b786', 1, 16, 22, 13, '2023-06-11 13:01:21'),
+(6, '6485a9946022d', 1, 16, 6, 14, '2023-06-11 13:01:40'),
+(7, '6485a9946022d', 1, 16, 6, 15, '2023-06-11 13:01:40'),
+(8, '6485af3f6a0a8', 1, 2, 28, 15, '2023-06-11 13:25:51'),
+(9, '6485b23291c14', 1, 16, 29, 10, '2023-06-11 13:38:26');
 
 -- --------------------------------------------------------
 
@@ -125,13 +169,11 @@ CREATE TABLE `screenings` (
 --
 
 INSERT INTO `screenings` (`id`, `date`, `time`, `price`, `is_subtitles`, `movie_id`, `hall_number`) VALUES
-(1, '2023-06-06', '14:20:00', 28.9, 1, 1, 2),
-(2, '2023-06-06', '17:40:00', 26.9, 0, 1, 2),
-(3, '2023-06-07', '12:00:00', 28.9, 1, 1, 1),
-(4, '2023-06-07', '12:30:00', 26, 0, 1, 2),
-(5, '2023-06-08', '21:20:00', 22.9, 1, 2, 1),
-(6, '2023-06-08', '15:40:00', 22.9, 0, 3, 1),
-(7, '2023-06-08', '20:00:00', 22.9, 0, 3, 2);
+(2, '2023-06-11', '17:50:00', 26.9, 1, 1, 1),
+(3, '2023-06-11', '12:00:00', 28.9, 1, 1, 1),
+(6, '2023-06-13', '15:40:00', 22.9, 0, 3, 1),
+(16, '2023-06-11', '19:20:00', 26.99, 0, 1, 1),
+(22, '2023-06-14', '12:20:00', 28.9, 1, 8, 2);
 
 -- --------------------------------------------------------
 
@@ -182,6 +224,12 @@ INSERT INTO `seats` (`id`, `row`, `number`, `hall_number`) VALUES
 --
 
 --
+-- Indeksy dla tabeli `admins`
+--
+ALTER TABLE `admins`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeksy dla tabeli `customers`
 --
 ALTER TABLE `customers`
@@ -228,34 +276,40 @@ ALTER TABLE `seats`
 --
 
 --
+-- AUTO_INCREMENT dla tabeli `admins`
+--
+ALTER TABLE `admins`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT dla tabeli `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT dla tabeli `genres`
 --
 ALTER TABLE `genres`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT dla tabeli `movies`
 --
 ALTER TABLE `movies`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT dla tabeli `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT dla tabeli `screenings`
 --
 ALTER TABLE `screenings`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT dla tabeli `seats`

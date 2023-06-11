@@ -23,6 +23,11 @@ if ($conn->affected_rows != 0) {
     $deleteScreening = 0;
 }
 
+if( $conn->affected_rows ==1){
+  //echo "Prawidłowo dodano rekord";
+  $_SESSION["success"]="Prawidłowo usunięto rekord";
+}
+
 header("location: ../screenings.php");
 ?>
 

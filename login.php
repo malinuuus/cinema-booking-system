@@ -25,7 +25,7 @@ if (isset($_SESSION["error"])) {
 
 if (isset($_SESSION["success"])) {
     echo <<< ERROR
-       <div class="fixed-top alert alert-danger alert-dismissible m-3"> 
+       <div class="fixed-top alert alert-success alert-dismissible m-3"> 
            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
            <h5><i class="icon fas fa-check"></i>Komunikat!</h5>
            $_SESSION[success]
@@ -57,10 +57,14 @@ if (isset($_SESSION["success"])) {
 
             <div class="row my-3">
                 <div class="col">
-                    <button type="submit" class="btn btn-primary btn-block">Zaloguj sie</button>
+                    <button type="submit" class="btn btn-primary btn-block">Zaloguj się</button>
                 </div>
             </div>
-
+            <div class="row my-3">
+                <div class="col">
+                    <a href="./admin/login.php" class="btn btn-primary btn-block">Przejdź do panelu admina</a>
+                </div>
+            </div>
             <div class="col-5">
                 <p> Nie masz jeszcze konta? <a href="register.php" class="text-center">Zarejestruj się</a></p>
             </div>

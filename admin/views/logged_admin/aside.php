@@ -14,7 +14,15 @@
             </div>
             <div class="info">
                 <a href="#" class="d-block">
-                    Jan Kowalski
+                    <?php
+                    require_once "../scripts/connect.php";
+                    $stmt = $conn->prepare("SELECT * FROM admins WHERE id = ?");
+                    $stmt->bind_param("i", $_SESSION["admin_id"]);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+                    $admin = $result->fetch_assoc();
+                    echo "$admin[first_name] $admin[last_name]";
+                    ?>
                 </a>
             </div>
         </div>

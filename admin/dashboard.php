@@ -19,6 +19,7 @@
 
     <!-- Navbar -->
     <?php
+    session_start();
     require_once "views/navbar.php";
     ?>
     <!-- /.navbar -->

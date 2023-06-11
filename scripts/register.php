@@ -19,6 +19,11 @@ if (!isset($_POST["terms"])) {
 if ($_POST["pass1"] != $_POST["pass2"]) {
     $_SESSION["error"] = "Hasła sa różne";
     $error++;
+}else{
+    if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\d\s])\S{8,}$/', $_POST["pass1"])) {
+        $_SESSION["error"]  = "Hasło nie spełnia wymagań!";
+        $error++;
+    }
 }
 
 if ($_POST["email1"] != $_POST["email2"]) {
